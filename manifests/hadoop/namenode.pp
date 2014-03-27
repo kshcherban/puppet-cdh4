@@ -15,6 +15,20 @@ class cdh4::hadoop::namenode {
     package { 'hadoop-hdfs-namenode':
         ensure => installed
     }
+    # run secondary namenode if not HA
+    if (!$::cdh4::hadoop::ha_enabled) {
+        package { 'hadoop-hdfs-secondarynamenode':
+            ensure => installed
+        }
+        service { 'hadoop-hdfs-secondarynamenode':
+            ensure     => 'running',
+            enable     => true,
+            hasstatus  => true,
+            hasrestart => true,
+            alias      => 'secondarynamenode',
+            require    => Package['hadoop-hdfs-secondarynamenode'],
+        }
+    }
 
     file { "${::cdh4::hadoop::config_directory}/hosts.exclude":
         source => 'puppet:///modules/cdh4/hadoop/hosts.exclude',
