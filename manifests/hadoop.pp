@@ -142,13 +142,13 @@ class cdh4::hadoop(
     # which are '.' delimited.
     $primary_namenode_id   = inline_template('<%= @primary_namenode_host.tr(\'.\', \'-\') %>')
 
-    package { 'hadoop-client':
+    package { 'hadoop-hdfs':
         ensure => 'installed'
     }
 
-    # All config files require hadoop-client package.
+    # All config files require hadoop-hdfs package.
     File {
-        require => Package['hadoop-client']
+        require => Package['hadoop-hdfs']
     }
 
     # ensure for yarn specific config files.
