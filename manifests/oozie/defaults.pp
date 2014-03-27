@@ -17,7 +17,7 @@ class cdh4::oozie::defaults {
     $smtp_username                          = undef
     $smtp_password                          = undef
 
-    $authorization_service_security_enabled = true
+    $authorization_service_security_enabled = false
 
     # Default puppet paths to template config files.
     # This allows us to use custom template config files
@@ -25,4 +25,6 @@ class cdh4::oozie::defaults {
     # module yet supports.
     $oozie_site_template                    = 'cdh4/oozie/oozie-site.xml.erb'
     $oozie_env_template                     = 'cdh4/oozie/oozie-env.sh.erb'
+
+    $mr_pool                                = 'default'
 }

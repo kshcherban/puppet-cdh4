@@ -28,6 +28,7 @@
 # $authorization_service_security_enabled -  If disabled any user can manage Oozie
 #                                            system and manage any job.  Default: true
 #
+# $mr_pool                      - MarReduce pool used by oozie.     Default: default
 class cdh4::oozie::server(
     $database                               = $cdh4::oozie::defaults::database,
 
@@ -48,7 +49,9 @@ class cdh4::oozie::server(
     $authorization_service_security_enabled = $cdh4::oozie::defaults::authorization_service_security_enabled,
 
     $oozie_site_template                    = $cdh4::oozie::defaults::oozie_site_template,
-    $oozie_env_template                     = $cdh4::oozie::defaults::oozie_env_template
+    $oozie_env_template                     = $cdh4::oozie::defaults::oozie_env_template,
+
+    $mr_pool                                = $cdh4::oozie::defaults::mr_pool
 ) inherits cdh4::oozie::defaults
 {
     # cdh4::oozie::server requires hadoop client and configs are installed.

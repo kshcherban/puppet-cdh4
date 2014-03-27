@@ -14,9 +14,9 @@
 #
 # See: http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH4/4.2.1/CDH4-Installation-Guide/cdh4ig_topic_17_6.html
 #
-class cdh4::oozie::database::mysql {
-    if (!defined(Package['libmysql-java'])) {
-        package { 'libmysql-java':
+class oozie::database::mysql {
+    if (!defined(Package['mysql-connector-java'])) {
+        package { 'mysql-connector-java':
             ensure => 'installed',
         }
     }
@@ -24,8 +24,8 @@ class cdh4::oozie::database::mysql {
     # symlink mysql.jar into /var/lib/oozie
     file { '/var/lib/oozie/mysql.jar':
         ensure  => 'link',
-        target  => '/usr/share/java/mysql.jar',
-        require => Package['libmysql-java'],
+        target  => '/usr/share/java/mysql-connector-java.jar',
+        require => [Package['mysql-connector-java'], Package['oozie']]
     }
 
     $db_name = $cdh4::oozie::server::jdbc_database
