@@ -4,15 +4,10 @@
 class cdh4::hbase::regionserver {
     Class['cdh4::hbase'] -> Class['cdh4::hbase::regionserver']
 
-    # install hbase package
+    # install and run regionserver
     package { 'hbase-regionserver':
         ensure => installed
     }
-    package { 'hbase-thrift':
-        ensure => installed
-    }
-
-    # run services
     service { 'hbase-regionserver':
         ensure      => 'running',
         enable      => true,
@@ -20,11 +15,17 @@ class cdh4::hbase::regionserver {
         hasrestart  => true,
         require     => Package['hbase-regionserver']
     }
-    service { 'hbase-thrift':
-        ensure      => 'running',
-        enable      => true,
-        hasstatus   => true,
-        hasrestart  => true,
-        require     => [Package['hbase-thrift'], Service['hbase-regionserver']]
+    # install and run thrift if not defined earlier
+    if (!defined(Package['hbase-thrift'])) {
+            package { 'hbase-thrift':
+                ensure => installed
+            }
+            service { 'hbase-thrift':
+                ensure      => 'running',
+                enable      => true,
+                hasstatus   => true,
+                hasrestart  => true,
+                require     => [Package['hbase-thrift'], Service['hbase-regionserver']]
+            }
     }
 }
