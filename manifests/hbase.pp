@@ -50,7 +50,7 @@ class cdh4::hbase(
     $ganglia_hosts          = $::cdh4::hbase::defaults::ganglia_hosts,
     $env_heapsize           = $::cdh4::hbase::defaults::env_heapsize,
     $env_javaopts           = $::cdh4::hbase::defaults::env_javaopts
-)
+) inherits cdh4::hbase::defaults
 {
     package { 'hbase':
         ensure => 'installed'
