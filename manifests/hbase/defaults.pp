@@ -3,7 +3,7 @@
 #
 class cdh4::hbase::defaults {
     $config_directory       = '/etc/hbase/conf'
-    $hbase_root_dir         = "${defaultfs_uri}/hbase"
+    $hbase_root_dir         = '/hbase'
 
     $region_size            = '107374182400'
 

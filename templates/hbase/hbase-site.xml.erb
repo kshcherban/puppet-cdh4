@@ -8,7 +8,7 @@
     </property>
     <property>
         <name>hbase.rootdir</name>
-        <value><%= @hbase_root_dir %></value>
+        <value><%= @defaultfs_uri %>/<%= @hbase_root_dir %></value>
         <description>The directory shared by region servers in HDFS</description>
     </property>
     <property>
