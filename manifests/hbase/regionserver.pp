@@ -13,7 +13,9 @@ class cdh4::hbase::regionserver {
         enable      => true,
         hasstatus   => true,
         hasrestart  => true,
-        require     => Package['hbase-regionserver']
+        require     => Package['hbase-regionserver'],
+        #subscribe => File["$::cdh4::hbase::config_directory/hbase-site.xml"]
+
     }
     # install and run thrift if not defined earlier
     if (!defined(Package['hbase-thrift'])) {
