@@ -52,6 +52,15 @@ class cdh4::hbase(
     $env_javaopts           = $::cdh4::hbase::defaults::env_javaopts
 )
 {
+    package { 'hbase':
+        ensure => 'installed'
+    }
+
+    # All config files require hbase package.
+    File {
+        require => Package['hbase']
+    }
+
     file { "${config_directory}/hbase-env.sh":
         content => template('cdh4/hbase/hbase-env.sh.erb'),
     }
