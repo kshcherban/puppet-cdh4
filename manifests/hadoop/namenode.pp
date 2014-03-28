@@ -31,7 +31,7 @@ class cdh4::hadoop::namenode {
     }
 
     file { "${::cdh4::hadoop::config_directory}/hosts.exclude":
-        source => 'puppet:///modules/cdh4/hadoop/hosts.exclude',
+        content => template('cdh4/hadoop/hosts.exclude.erb'),
         ensure  => 'present',
         require => Package['hadoop-hdfs-namenode'],
     }

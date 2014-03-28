@@ -39,6 +39,7 @@ class cdh4::hadoop::defaults {
     $use_yarn                                 = true
     $ganglia_hosts                            = undef
     $net_topology_script_template             = undef
+    $exclude_hosts                            = undef
 
 
     # JMX Ports (These are not currently configurable)

@@ -69,6 +69,7 @@
 #   $net_topology_script_template             - Puppet ERb template path  to script that will be
 #                                               invoked to resolve node names to row or rack assignments.
 #                                               Default: undef
+#   $exclude_hosts                            - Array of excluded hosts
 #
 class cdh4::hadoop(
     $namenode_hosts,
@@ -111,7 +112,8 @@ class cdh4::hadoop(
     $yarn_resourcemanager_scheduler_class        = $::cdh4::hadoop::defaults::yarn_resourcemanager_scheduler_class,
     $use_yarn                                    = $::cdh4::hadoop::defaults::use_yarn,
     $ganglia_hosts                               = $::cdh4::hadoop::defaults::ganglia_hosts,
-    $net_topology_script_template                = $::cdh4::hadoop::defaults::net_topology_script_template
+    $net_topology_script_template                = $::cdh4::hadoop::defaults::net_topology_script_template,
+    $exclude_hosts                               = $::cdh4::hadoop::defaults::exclude_hosts
 ) inherits cdh4::hadoop::defaults
 {
     # If $dfs_name_dir is a list, this will be the
