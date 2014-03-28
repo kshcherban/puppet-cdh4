@@ -1,0 +1,20 @@
+# NOTE: This file is managed by Puppet.
+# If no ganglia hosts defined it will be empty.
+
+<% if @ganglia_hosts
+ganglia_hosts_string = ganglia_hosts.sort.join(',')
+-%>
+
+hbase.class=org.apache.hadoop.metrics.ganglia.GangliaContext31
+hbase.period=10
+hbase.servers=<%= ganglia_hosts_string %>
+
+jvm.class=org.apache.hadoop.metrics.ganglia.GangliaContext31
+jvm.period=10
+jvm.servers=<%= ganglia_hosts_string %>
+
+rpc.class=org.apache.hadoop.metrics.ganglia.GangliaContext31
+rpc.period=10
+rpc.servers=<%= ganglia_hosts_string %>
+
+<% end -%>
