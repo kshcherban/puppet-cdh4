@@ -110,7 +110,7 @@
     </property>
     <property>
         <name>hbase.zookeeper.quorum</name>
-        <value><%= @zookeeper_quorum %></value>
+        <value><%= @zookeeper_quorum.join(',') %></value>
     </property>
     <property>
         <name>hbase.zookeeper.property.dataDir</name>
