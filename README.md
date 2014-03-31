@@ -264,7 +264,7 @@ with dot ('.') characters replaced with dashes ('-').  E.g.  ```namenode1-domain
 
 ## Hbase regionservers
 
-```
+```puppet
 class my::hbase {
     class { 'cdh4::hbase':
         defaultfs_uri           => 'hdfs://master.domain.org',
@@ -288,7 +288,7 @@ This installs and configures regionserver.
 
 Create same ```my::hbase class```
 
-```
+```puppet
 class my::hbase::master inherits my::hbase {
     include cdh4::hbase::master
 }
@@ -311,7 +311,7 @@ Installs zookeeper package and creates custom zoo.cfg which can be parametrized.
 
 ## Zookeeper server
 
-```
+```puppet
 class my::zookeeper {
     class { 'cdh4::zookeeper':
         zookeeper_quorum        => ['zk1.domain.org', 'zk2.domain.org']
