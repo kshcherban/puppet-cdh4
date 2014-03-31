@@ -260,6 +260,75 @@ sudo -u hdfs /usr/bin/hdfs haadmin -transitionToActive <namenode_id>
 with dot ('.') characters replaced with dashes ('-').  E.g.  ```namenode1-domain-org```.
 
 
+# Hbase
+
+## Hbase regionservers
+
+```
+class my::hbase {
+    class { 'cdh4::hbase':
+        defaultfs_uri           => 'hdfs://master.domain.org',
+        zookeeper_quorum        => ['zk1.domain.org', 'zk2.domain.org'],
+        zookeeper_znode_parent  => '/hbase'
+    }
+}
+
+class my::hbase::regionserver inherits my::hbase {
+    include cdh4::hbase::regionserver
+}
+
+node 'regionserver.domain.org' {
+    include my::hbase::regionserver
+}
+```
+
+This installs and configures regionserver.
+
+## Hbase master
+
+Create same ```my::hbase class```
+
+```
+class my::hbase::master inherits my::hbase {
+    include cdh4::hbase::master
+}
+
+node 'hmaster.domain.org' {
+    include my::hbase::master
+}
+```
+
+This class installs and configures Hbase master.
+
+
+# Zookeeper
+
+## Zookeeper client
+
+```node 'node.domain.org' { include cdh4::zookeeper }```
+
+Installs zookeeper package and creates custom zoo.cfg which can be parametrized.
+
+## Zookeeper server
+
+```
+class my::zookeeper {
+    class { 'cdh4::zookeeper':
+        zookeeper_quorum        => ['zk1.domain.org', 'zk2.domain.org']
+    }
+
+class my::zookeeper::server inherits my::zookeeper {
+    include cdh4::zookeeper::server
+}
+
+node 'zk1.domain.org' {
+    include my::zookeeper::server
+}
+```
+Installs and configures Zookeeper server that is part of ensemble.
+zookeeper-server package is installed, then zookeeper service is initialized if run first time.
+
+
 # Hive
 
 ## Hive Clients
@@ -336,4 +405,5 @@ Hue will be configured to run its Hive and Oozie apps.
 
 Hue Impala is not currently supported, since Impala hasn't been puppetized
 in this module yet.
+
 
