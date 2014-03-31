@@ -314,7 +314,7 @@ Installs zookeeper package and creates custom zoo.cfg which can be parametrized.
 ```puppet
 class my::zookeeper {
     class { 'cdh4::zookeeper':
-        zookeeper_quorum        => ['zk1.domain.org', 'zk2.domain.org']
+        zookeeper_quorum => ['zk1.domain.org', 'zk2.domain.org']
     }
 
 class my::zookeeper::server inherits my::zookeeper {
