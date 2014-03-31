@@ -4,12 +4,15 @@
 class cdh4::hadoop::defaults {
     $config_directory                         = '/etc/hadoop/conf'
 
+    $replicas                                 = undef
+
     $nameservice_id                           = undef
     $journalnode_hosts                        = undef
     $dfs_journalnode_edits_dir                = undef
 
     $datanode_mounts                          = undef
     $dfs_data_path                            = 'hdfs/dn'
+    $dfs_fail_vol                             = undef
     $yarn_local_path                          = 'yarn/local'
     $yarn_logs_path                           = 'yarn/logs'
     $dfs_block_size                           = 67108864 # 64MB default
@@ -41,6 +44,8 @@ class cdh4::hadoop::defaults {
     $net_topology_script_template             = undef
     $exclude_hosts                            = undef
 
+    # Custom java options for hadoop environment
+    $env_javaopts                      = undef
 
     # JMX Ports (These are not currently configurable)
     $namenode_jmxremote_port           = 9980

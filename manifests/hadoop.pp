@@ -17,6 +17,7 @@
 #                                 will also be used as the host for the historyserver, proxyserver,
 #                                 and resourcemanager.   Use multiple hosts hosts if you
 #                                 configuring Hadoop with HA NameNodes.
+#   $replicas                   - Block replication factor
 #   $dfs_name_dir               - Path to hadoop NameNode name directory.  This
 #                                 can be an array of paths or a single string path.
 #   $nameservice_id             - Arbitrary logical HDFS cluster name.  Only set this
@@ -29,6 +30,7 @@
 #   $datanode_mounts            - Array of JBOD mount points.  Hadoop datanode and
 #                                 mapreduce/yarn directories will be here.
 #   $dfs_data_path              - Path relative to JBOD mount point for HDFS data directories.
+#   $dfs_fail_vol               - Number of failed volumes tolerated
 #   $enable_jmxremote           - enables remote JMX connections for all Hadoop services.
 #                                 Ports are not currently configurable.  Default: true.
 #   $yarn_local_path            - Path relative to JBOD mount point for yarn local directories.
@@ -70,10 +72,13 @@
 #                                               invoked to resolve node names to row or rack assignments.
 #                                               Default: undef
 #   $exclude_hosts                            - Array of excluded hosts
+#   $env_javaopts                             - Custom HADOOP_OPTS
 #
 class cdh4::hadoop(
     $namenode_hosts,
     $dfs_name_dir,
+
+    $replicas                                    = $::cdh4::hadoop::defaults::replicas,
 
     $config_directory                            = $::cdh4::hadoop::defaults::config_directory,
 
@@ -83,6 +88,7 @@ class cdh4::hadoop(
 
     $datanode_mounts                             = $::cdh4::hadoop::defaults::datanode_mounts,
     $dfs_data_path                               = $::cdh4::hadoop::defaults::dfs_data_path,
+    $dfs_fail_vol                                = $::cdh4::hadoop::defaults::dfs_fail_vol,
 
     $yarn_local_path                             = $::cdh4::hadoop::defaults::yarn_local_path,
     $yarn_logs_path                              = $::cdh4::hadoop::defaults::yarn_logs_path,
@@ -113,7 +119,8 @@ class cdh4::hadoop(
     $use_yarn                                    = $::cdh4::hadoop::defaults::use_yarn,
     $ganglia_hosts                               = $::cdh4::hadoop::defaults::ganglia_hosts,
     $net_topology_script_template                = $::cdh4::hadoop::defaults::net_topology_script_template,
-    $exclude_hosts                               = $::cdh4::hadoop::defaults::exclude_hosts
+    $exclude_hosts                               = $::cdh4::hadoop::defaults::exclude_hosts,
+    $env_javaopts                                = $::cdh4::hadoop::defaults::env_javaopts
 ) inherits cdh4::hadoop::defaults
 {
     # If $dfs_name_dir is a list, this will be the
