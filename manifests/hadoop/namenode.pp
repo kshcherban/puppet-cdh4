@@ -1,5 +1,5 @@
 # == Class cdh4::hadoop::namenode
-# Installs and configureds Hadoop NameNode.
+# Installs and configures Hadoop NameNode.
 # This will format the NameNode if it is not
 # already formatted.  It will also create
 # a common HDFS directory hierarchy.

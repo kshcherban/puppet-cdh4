@@ -1,0 +1,9 @@
+<% if @zookeeper_quorum -%>
+<% @zookeeper_quorum.sort.each_with_index do |host, index| -%>
+<% if host.split(':')[0] == @fqdn -%>
+<%= index %>
+<% elsif host.split(':')[0] == @hostname -%>
+<%= index %>
+<% end # if host -%>
+<% end # @zookeeper_quorum.each -%>
+<% end %>

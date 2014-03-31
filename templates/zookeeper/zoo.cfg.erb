@@ -1,0 +1,13 @@
+maxClientCnxns=<%= @client_conn_max %>
+tickTime=<%= @tick_time %>
+initLimit=10
+syncLimit=5
+dataDir=<%= @data_dir %>
+clientPort=<%= @client_port %>
+minSessionTimeout=<%= @session_timeout_min %>
+maxSessionTimeout=<%= @session_timeout_max %>
+<% if @zookeeper_quorum -%>
+<% @zookeeper_quorum.sort.each_with_index do |host, index| -%>
+server.<%= index %>=<%= host %>
+<% end # @zookeeper_quorum.each -%>
+<% end -%>
