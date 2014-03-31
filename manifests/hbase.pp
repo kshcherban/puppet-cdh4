@@ -30,9 +30,9 @@
 #
 #
 class cdh4::hbase(
-    $regionservers,
     $defaultfs_uri,
     $zookeeper_quorum,
+    $regionservers          = $::cdh4::hbase::defaults::regionservers,
     $config_directory       = $::cdh4::hbase::defaults::config_directory,
     $hbase_root_dir         = $::cdh4::hbase::defaults::hbase_root_dir,
     $region_size            = $::cdh4::hbase::defaults::region_size,
@@ -81,7 +81,12 @@ class cdh4::hbase(
     }
 
     # File with regionservers
+    $regionservers_ensure = $regionservers ? {
+        undef   => 'absent',
+        default => 'present',
+    }
     file { "${config_directory}/regionservers":
+        ensure => $regionservers_ensure,
         content => template('cdh4/hbase/regionservers.erb')
     }
 

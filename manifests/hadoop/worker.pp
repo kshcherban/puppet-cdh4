@@ -14,6 +14,12 @@
 class cdh4::hadoop::worker {
     Class['cdh4::hadoop'] -> Class['cdh4::hadoop::worker']
 
+    if (! $::cdh4::hadoop::use_yarn) {
+        package { 'hadoop-0.20-mapreduce':
+                ensure => installed
+        }
+    }
+
     cdh4::hadoop::worker::paths { $::cdh4::hadoop::datanode_mounts: }
 
     class { 'cdh4::hadoop::datanode':

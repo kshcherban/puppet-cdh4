@@ -1,3 +1,5 @@
-<% @regionservers.sort.each do |host| -%>
-<%= host %>
+<% if @regionservers %>
+    <% @regionservers.sort.each do |host| -%>
+    <%= host %>
+    <% end -%>
 <% end -%>

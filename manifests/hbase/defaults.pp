@@ -18,6 +18,8 @@ class cdh4::hbase::defaults {
     $zookeeper_znode_parent = '/hbase'
     $zookeeper_timeout      = '1200000'
 
+    $regionservers          = undef
+
     $regionserver_maxlogs   = '32'
     $regionserver_lease     = '1800000'
     $regionserver_logroll   = '3600000'

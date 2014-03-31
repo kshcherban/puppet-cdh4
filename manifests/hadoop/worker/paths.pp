@@ -77,6 +77,7 @@ define cdh4::hadoop::worker::paths($basedir = $title) {
             owner   => 'mapred',
             group   => 'hadoop',
             mode    => '0755',
+            require => Package['hadoop-0.20-mapreduce']
         }
     }
 }
