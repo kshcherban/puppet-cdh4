@@ -55,14 +55,12 @@
 <% end # if jobtracker var-%>
   </property>
 <% if @mapreduce_system_dir -%>
-
   <property>
     <name>mapred.system.dir</name>
     <value><%= @mapreduce_system_dir %></value>
   </property>
 <% end -%>
 <% if @mapreduce_local_dir -%>
-
     <property>
         <name>mapred.local.dir</name>
         <value><%= @mapreduce_local_dir %></value>
