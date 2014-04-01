@@ -186,8 +186,8 @@
 <% if @mapreduce_taskscheduler and @mapreduce_scheduler_opts -%>
 <% @mapreduce_scheduler_opts.each do |opts| -%>
   <property>
-    <name><%= @opts.split(':')[0] %></name>
-    <value><%= @opts.split(':')[1] %></value>
+    <name><%= opts.split(':')[0] %></name>
+    <value><%= opts.split(':')[1] %></value>
   </property>
 <% end # mapreduce_scheduler_opts.each -%>
 <% end #if -%>

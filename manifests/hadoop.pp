@@ -116,6 +116,9 @@ class cdh4::hadoop(
     $mapreduce_task_io_sort_factor               = $::cdh4::hadoop::defaults::mapreduce_task_io_sort_factor,
     $mapreduce_map_java_opts                     = $::cdh4::hadoop::defaults::mapreduce_map_java_opts,
     $mapreduce_reduce_java_opts                  = $::cdh4::hadoop::defaults::mapreduce_reduce_java_opts,
+    $mapreduce_reduce_parallel_copies            = $::cdh4::hadoop::defaults::mapreduce_reduce_parallel_copies,
+    $mapreduce_taskscheduler                     = $::cdh4::hadoop::defaults::mapreduce_taskscheduler,
+    $mapreduce_scheduler_opts                    = $::cdh4::hadoop::defaults::mapreduce_scheduler_opts,
     $mapreduce_shuffle_port                      = $::cdh4::hadoop::defaults::mapreduce_shuffle_port,
     $mapreduce_intermediate_compression          = $::cdh4::hadoop::defaults::mapreduce_intermediate_compression,
     $mapreduce_intermediate_compression_codec    = $::cdh4::hadoop::defaults::mapreduce_intermediate_compression_codec,
@@ -128,8 +131,9 @@ class cdh4::hadoop(
     $ganglia_hosts                               = $::cdh4::hadoop::defaults::ganglia_hosts,
     $net_topology_script_template                = $::cdh4::hadoop::defaults::net_topology_script_template,
     $exclude_hosts                               = $::cdh4::hadoop::defaults::exclude_hosts,
-    $env_javaopts                                = $::cdh4::hadoop::defaults::env_javaopts
-    $custom_opts                                 = $::cdh4::hadoop::defaults::custom_opts
+    $env_javaopts                                = $::cdh4::hadoop::defaults::env_javaopts,
+    $custom_opts                                 = $::cdh4::hadoop::defaults::custom_opts,
+    $namenode_opts                               = $::cdh4::hadoop::defaults::namenode_opts
 ) inherits cdh4::hadoop::defaults
 {
     # If $dfs_name_dir is a list, this will be the
