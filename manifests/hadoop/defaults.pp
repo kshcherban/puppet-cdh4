@@ -29,8 +29,13 @@ class cdh4::hadoop::defaults {
     $mapreduce_reduce_memory_mb               = undef
     $mapreduce_task_io_sort_mb                = undef
     $mapreduce_task_io_sort_factor            = undef
+    $mapreduce_child_java_opts                = undef
     $mapreduce_map_java_opts                  = undef
     $mapreduce_reduce_java_opts               = undef
+    $mapreduce_reduce_parallel_copies         = undef
+    $mapreduce_taskscheduler                  = undef
+    $mapreduce_scheduler_opts                 = undef
+    $mapred_acls_enabled                      = false
     $mapreduce_shuffle_port                   = undef
     $mapreduce_intermediate_compression       = false
     $mapreduce_intermediate_compression_codec = 'org.apache.hadoop.io.compress.DefaultCodec'
@@ -44,8 +49,9 @@ class cdh4::hadoop::defaults {
     $net_topology_script_template             = undef
     $exclude_hosts                            = undef
 
-    # Custom java options for hadoop environment
+    # Custom options for hadoop environment
     $env_javaopts                      = undef
+    $custom_opts                       = undef
 
     # JMX Ports (These are not currently configurable)
     $namenode_jmxremote_port           = 9980
@@ -53,4 +59,5 @@ class cdh4::hadoop::defaults {
     $resourcemanager_jmxremote_port    = 9983
     $nodemanager_jmxremote_port        = 9984
     $proxyserver_jmxremote_port        = 9985
+    $namenode_opts                     = undef
 }

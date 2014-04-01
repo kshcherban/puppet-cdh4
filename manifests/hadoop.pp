@@ -48,11 +48,16 @@
 #   $mapreduce_task_io_sort_mb
 #   $mapreduce_task_io_sort_factor
 #   $mapreduce_map_java_opts
-#   $mapreduce_child_java_opts
+#   $mapreduce_reduce_java_opts
+#   $mapreduce_reduce_parallel_copies
+#   $mapreduce_taskscheduler
+#   $mapreduce_scheduler_opts                 - Array of schedulear options in format
+#                                        ['option1.name:value', 'option2.name:value']
+#   $mapred_acls_enabled
 #   $mapreduce_shuffle_port
 #   $mapreduce_intermediate_compression       - If true, intermediate MapReduce data
 #                                               will be compressed.  Default: true.
-#   Rmapreduce_intermediate_compression_codec - Codec class to use for intermediate compression.
+#   $mapreduce_intermediate_compression_codec - Codec class to use for intermediate compression.
 #                                               Default: org.apache.hadoop.io.compress.DefaultCodec
 #   $mapreduce_output_compession              - If true, final output of MapReduce
 #                                               jobs will be compressed. Default: false.
@@ -73,6 +78,9 @@
 #                                               Default: undef
 #   $exclude_hosts                            - Array of excluded hosts
 #   $env_javaopts                             - Custom HADOOP_OPTS
+#   $namenode_opts                            - Custom namenode environment options, string
+#   $cutom_opts                               - Array of custom environment options, example
+#                                               ['HADOOP_JOBTRACKER_OPTS="-Xmx800m"','MYVAR="super"']
 #
 class cdh4::hadoop(
     $namenode_hosts,
@@ -121,6 +129,7 @@ class cdh4::hadoop(
     $net_topology_script_template                = $::cdh4::hadoop::defaults::net_topology_script_template,
     $exclude_hosts                               = $::cdh4::hadoop::defaults::exclude_hosts,
     $env_javaopts                                = $::cdh4::hadoop::defaults::env_javaopts
+    $custom_opts                                 = $::cdh4::hadoop::defaults::custom_opts
 ) inherits cdh4::hadoop::defaults
 {
     # If $dfs_name_dir is a list, this will be the
