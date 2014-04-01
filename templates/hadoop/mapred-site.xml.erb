@@ -37,7 +37,6 @@
     <name>mapreduce.shuffle.port</name>
     <value><%= @mapreduce_shuffle_port %></value>
   </property>
-
 <% end -%>
   <property>
     <name>mapred.job.tracker</name>
@@ -45,10 +44,15 @@
        even though we are using YARN and the jobtracker is not running. -->
     <value>localhost:8021</value>
   </property>
-<% else -%>
+
+<% else # else use_yarn -%>
   <property>
     <name>mapred.job.tracker</name>
+<% if @jobtracker -%>
+    <value><%= @jobtracker %></value>
+<% else -%>
     <value><%= @primary_namenode_host %>:8021</value>
+<% end # if jobtracker var-%>
   </property>
 <% if @mapreduce_system_dir -%>
 
@@ -63,7 +67,6 @@
         <name>mapred.local.dir</name>
         <value><%= @mapreduce_local_dir %></value>
     </property>
-<% end -%>
 <% end -%>
 
 <% if @mapreduce_map_tasks_maximum -%>
@@ -180,7 +183,7 @@
     <value><%= opts.split(':')[1] %></value>
   </property>
 <% end # mapreduce_scheduler_opts.each -%>
-<% end #if -%>
+<% end -%>
 
 <% if @mapred_acls_enabled -%>
   <property>
@@ -188,5 +191,6 @@
     <value>true</value>
   </property>
 <% end -%>
+<% end # if use_yarn -%>
 
 </configuration>

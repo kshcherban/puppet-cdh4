@@ -20,13 +20,11 @@
 # The above declaration will ensure that the following directory hierarchy exists:
 #       /mnt/hadoop/data/a
 #       /mnt/hadoop/data/a/hdfs
-#       /mnt/hadoop/data/a/hdfs/dn
 #       /mnt/hadoop/data/a/yarn
 #       /mnt/hadoop/data/a/yarn/local
 #       /mnt/hadoop/data/a/yarn/logs
 #       /mnt/hadoop/data/b
 #       /mnt/hadoop/data/b/hdfs
-#       /mnt/hadoop/data/b/hdfs/dn
 #       /mnt/hadoop/data/b/yarn
 #       /mnt/hadoop/data/b/yarn/local
 #       /mnt/hadoop/data/b/yarn/logs
@@ -48,11 +46,8 @@ define cdh4::hadoop::worker::paths($basedir = $title) {
         mode    => '0755',
     }
 
-    # Assume that $dfs_data_path is two levels.  e.g. hdfs/dn
-    # We need to manage the parent directory too.
-    $dfs_data_path_parent = inline_template("<%= File.dirname('${::cdh4::hadoop::dfs_data_path}') %>")
     # create DataNode directories
-    file { ["${basedir}/${dfs_data_path_parent}", "${basedir}/${::cdh4::hadoop::dfs_data_path}"]:
+    file { "${basedir}/$::cdh4::hadoop::dfs_data_path":
         ensure  => 'directory',
         owner   => 'hdfs',
         group   => 'hdfs',

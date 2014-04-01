@@ -11,13 +11,15 @@ class cdh4::hadoop::defaults {
     $dfs_journalnode_edits_dir                = undef
 
     $datanode_mounts                          = undef
-    $dfs_data_path                            = 'hdfs/dn'
+    $dfs_data_path                            = 'hdfs'
     $dfs_fail_vol                             = undef
     $yarn_local_path                          = 'yarn/local'
     $yarn_logs_path                           = 'yarn/logs'
     $dfs_block_size                           = 67108864 # 64MB default
     $enable_jmxremote                         = true
     $enable_webhdfs                           = true
+
+    $jobtracker                               = undef
     $mapreduce_system_dir                     = undef
     $mapreduce_local_dir                      = undef
     $io_file_buffer_size                      = undef

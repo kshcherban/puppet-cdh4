@@ -104,6 +104,8 @@ class cdh4::hadoop(
     $enable_jmxremote                            = $::cdh4::hadoop::defaults::enable_jmxremote,
     $enable_webhdfs                              = $::cdh4::hadoop::defaults::enable_webhdfs,
     $io_file_buffer_size                         = $::cdh4::hadoop::defaults::io_file_buffer_size,
+
+    $jobtracker                                  = $::cdh4::hadoop::defaults::jobtracker,
     $mapreduce_system_dir                        = $::cdh4::hadoop::defaults::mapreduce_system_dir,
     $mapreduce_local_dir                         = $::cdh4::hadoop::defaults::mapreduce_local_dir,
     $mapreduce_map_tasks_maximum                 = $::cdh4::hadoop::defaults::mapreduce_map_tasks_maximum,
