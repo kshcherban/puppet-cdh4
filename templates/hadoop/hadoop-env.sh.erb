@@ -28,3 +28,7 @@ export HADOOP_OPTS="$HADOOP_OPTS -server <%= env_javaopts %>"
 export <%= option %>
 <% end -%>
 <% end -%>
+
+<% if @hadoop_classpath -%>
+export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:<%= @hadoop_classpath.join(':') %>
+<% end -%>

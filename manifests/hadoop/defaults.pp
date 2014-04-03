@@ -62,4 +62,5 @@ class cdh4::hadoop::defaults {
     $nodemanager_jmxremote_port        = 9984
     $proxyserver_jmxremote_port        = 9985
     $namenode_opts                     = undef
+    $hadoop_classpath                  = undef
 }

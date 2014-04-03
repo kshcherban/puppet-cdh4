@@ -81,6 +81,7 @@
 #   $namenode_opts                            - Custom namenode environment options, string
 #   $cutom_opts                               - Array of custom environment options, example
 #                                               ['HADOOP_JOBTRACKER_OPTS="-Xmx800m"','MYVAR="super"']
+#   $hadoop_classpath                         - Array of classpath variables
 #
 class cdh4::hadoop(
     $namenode_hosts,
@@ -135,7 +136,8 @@ class cdh4::hadoop(
     $exclude_hosts                               = $::cdh4::hadoop::defaults::exclude_hosts,
     $env_javaopts                                = $::cdh4::hadoop::defaults::env_javaopts,
     $custom_opts                                 = $::cdh4::hadoop::defaults::custom_opts,
-    $namenode_opts                               = $::cdh4::hadoop::defaults::namenode_opts
+    $namenode_opts                               = $::cdh4::hadoop::defaults::namenode_opts,
+    $hadoop_classpath                            = $::cdh4::hadoop::defaults::hadoop_classpath
 ) inherits cdh4::hadoop::defaults
 {
     # If $dfs_name_dir is a list, this will be the
