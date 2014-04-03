@@ -4,7 +4,7 @@
 # Installs zookeeper client and configures Zookeeper ensemble
 #
 # == Parameters
-#   $zookeeper_quorum       - Array of zookeeper hosts:ports that create quorum
+#   $zookeeper_quorum       - Array of zookeeper hosts that create quorum
 #   $config_directory       - Path of zookeeper config directory
 #   $client_conn_max        - Maximum client connections
 #   $data_dir               - The directory where the snapshot is stored

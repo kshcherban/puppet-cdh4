@@ -8,6 +8,6 @@ minSessionTimeout=<%= @session_timeout_min %>
 maxSessionTimeout=<%= @session_timeout_max %>
 <% if @zookeeper_quorum -%>
 <% @zookeeper_quorum.sort.each_with_index do |host, index| -%>
-server.<%= index %>=<%= host %>
+server.<%= index %>=<%= host %>:2888
 <% end # @zookeeper_quorum.each -%>
 <% end -%>
