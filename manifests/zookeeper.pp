@@ -12,6 +12,7 @@
 #   $session_timeout_min    - The minimum session timeout in milliseconds that the server will allow the client to negotiate
 #   $session_timeout_max    - The maximum session timeout in milliseconds that the server will allow the client to negotiate
 #   $tick_time              - The length of a single tick, which is the basic time unit used by ZooKeeper, as measured in milliseconds
+#   $java_opts              - Custom java environment options for zookeeper-env.sh, string
 #
 #
 class cdh4::zookeeper(
@@ -22,7 +23,8 @@ class cdh4::zookeeper(
     $client_port            = $::cdh4::zookeeper::defaults::client_port,
     $tick_time              = $::cdh4::zookeeper::defaults::tick_time,
     $session_timeout_min    = $::cdh4::zookeeper::defaults::session_timeout_min,
-    $session_timeout_max    = $::cdh4::zookeeper::defaults::session_timeout_max
+    $session_timeout_max    = $::cdh4::zookeeper::defaults::session_timeout_max,
+    $java_opts              = $::cdh4::zookeeper::defaults::java_opts
 ) inherits cdh4::zookeeper::defaults
 {
     # Install zookeeper client
@@ -30,7 +32,12 @@ class cdh4::zookeeper(
         ensure => 'installed'
     }
     # Zookeeper configuration
-    file {"${config_directory}/zoo.cfg":
+    file { "${config_directory}/zoo.cfg":
         content => template('cdh4/zookeeper/zoo.cfg.erb')
+    }
+    if ($java_opts) {
+        file { "${config_directory}/zookeeper-env.sh":
+            content => template('cdh4/zookeeper/zookeeper-env.sh.erb')
+        }
     }
 }

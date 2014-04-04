@@ -10,4 +10,5 @@ class cdh4::zookeeper::defaults {
     $tick_time              = 2000
     $session_timeout_min    = 4000
     $session_timeout_max    = 40000
+    $java_opts              = undef
 }

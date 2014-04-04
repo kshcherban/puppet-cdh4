@@ -316,6 +316,7 @@ class my::zookeeper {
     class { 'cdh4::zookeeper':
         zookeeper_quorum => ['zk1.domain.org', 'zk2.domain.org']
     }
+}
 
 class my::zookeeper::server inherits my::zookeeper {
     include cdh4::zookeeper::server
