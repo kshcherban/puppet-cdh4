@@ -31,13 +31,18 @@ class cdh4::zookeeper(
     package { 'zookeeper':
         ensure => 'installed'
     }
+    File {
+        require => Package['zookeeper']
+    }
     # Zookeeper configuration
     file { "${config_directory}/zoo.cfg":
-        content => template('cdh4/zookeeper/zoo.cfg.erb')
+        content => template('cdh4/zookeeper/zoo.cfg.erb'),
+        mode    => '0644'
     }
     if ($java_opts) {
         file { "${config_directory}/zookeeper-env.sh":
-            content => template('cdh4/zookeeper/zookeeper-env.sh.erb')
+            content => template('cdh4/zookeeper/zookeeper-env.sh.erb'),
+            mode    => '0755'
         }
     }
 }
