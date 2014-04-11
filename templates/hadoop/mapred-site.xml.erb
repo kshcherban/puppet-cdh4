@@ -69,13 +69,13 @@
 
 <% if @mapreduce_map_tasks_maximum -%>
   <property>
-   <name>mapreduce.tasktracker.map.tasks.maximum</name>
+   <name>mapred.tasktracker.map.tasks.maximum</name>
    <value><%= mapreduce_map_tasks_maximum %></value>
   </property>
 <% end -%>
 <% if @mapreduce_reduce_tasks_maximum -%>
   <property>
-   <name>mapreduce.tasktracker.reduce.tasks.maximum</name>
+   <name>mapred.tasktracker.reduce.tasks.maximum</name>
    <value><%= mapreduce_reduce_tasks_maximum %></value>
   </property>
 <% end -%>

@@ -37,8 +37,8 @@
 #   $yarn_logs_path             - Path relative to JBOD mount point for yarn log directories.
 #   $dfs_block_size             - HDFS block size in bytes.  Default 64MB.
 #   $io_file_buffer_size
-#   $map_tasks_maximum
-#   $reduce_tasks_maximum
+#   $mapreduce_map_tasks_maximum
+#   $mapreduce_reduce_tasks_maximum
 #   $mapreduce_job_reuse_jvm_num_tasks
 #   $reduce_parallel_copies
 #   $map_memory_mb
