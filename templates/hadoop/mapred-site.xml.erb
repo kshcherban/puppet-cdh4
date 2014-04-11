@@ -174,13 +174,13 @@
   </property>
 <% end -%>
 
-<% if @mapreduce_taskscheduler and @mapreduce_scheduler_opts -%>
-<% @mapreduce_scheduler_opts.each do |opts| -%>
+<% if @mapreduce_custom_opts -%>
+<% @mapreduce_custom_opts.each do |opts| -%>
   <property>
     <name><%= opts.split(':')[0] %></name>
     <value><%= opts.split(':')[1] %></value>
   </property>
-<% end # mapreduce_scheduler_opts.each -%>
+<% end # mapreduce_custom_opts.each -%>
 <% end -%>
 
 <% if @mapred_acls_enabled -%>

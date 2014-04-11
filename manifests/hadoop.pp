@@ -51,7 +51,7 @@
 #   $mapreduce_reduce_java_opts
 #   $mapreduce_reduce_parallel_copies
 #   $mapreduce_taskscheduler
-#   $mapreduce_scheduler_opts                 - Array of schedulear options in format
+#   $mapreduce_custom_opts                 - Array of custom mapreduce options in format
 #                                        ['option1.name:value', 'option2.name:value']
 #   $mapred_acls_enabled
 #   $mapreduce_shuffle_port
@@ -121,7 +121,7 @@ class cdh4::hadoop(
     $mapreduce_reduce_java_opts                  = $::cdh4::hadoop::defaults::mapreduce_reduce_java_opts,
     $mapreduce_reduce_parallel_copies            = $::cdh4::hadoop::defaults::mapreduce_reduce_parallel_copies,
     $mapreduce_taskscheduler                     = $::cdh4::hadoop::defaults::mapreduce_taskscheduler,
-    $mapreduce_scheduler_opts                    = $::cdh4::hadoop::defaults::mapreduce_scheduler_opts,
+    $mapreduce_custom_opts                       = $::cdh4::hadoop::defaults::mapreduce_custom_opts,
     $mapreduce_shuffle_port                      = $::cdh4::hadoop::defaults::mapreduce_shuffle_port,
     $mapreduce_intermediate_compression          = $::cdh4::hadoop::defaults::mapreduce_intermediate_compression,
     $mapreduce_intermediate_compression_codec    = $::cdh4::hadoop::defaults::mapreduce_intermediate_compression_codec,

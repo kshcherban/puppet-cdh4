@@ -36,7 +36,7 @@ class cdh4::hadoop::defaults {
     $mapreduce_reduce_java_opts               = undef
     $mapreduce_reduce_parallel_copies         = undef
     $mapreduce_taskscheduler                  = undef
-    $mapreduce_scheduler_opts                 = undef
+    $mapreduce_custom_opts                    = undef
     $mapred_acls_enabled                      = false
     $mapreduce_shuffle_port                   = undef
     $mapreduce_intermediate_compression       = false
